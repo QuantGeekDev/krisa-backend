@@ -1,17 +1,19 @@
 import { Router } from 'express';
-import { AuthController } from '@controllers/auth.controller';
 import { Routes } from '@interfaces/routes.interface';
+import { KrisaController } from '@/controllers/krisa.controller';
+import KrisaMongooseRepository from '@/repository/KrisaMongooseRepository';
 
 export class KrisaRoute implements Routes {
-  public path = '/';
+  public path = '/krisas';
   public router = Router();
-  public auth = new AuthController();
+  public repository = new KrisaMongooseRepository();
+  public krisa = new KrisaController(this.repository);
 
   constructor() {
     this.initializeRoutes();
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}/`, this.auth.signUp);
+    this.router.get(`${this.path}/`, this.krisa.getKrisa);
   }
 }
