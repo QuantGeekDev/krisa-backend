@@ -1,12 +1,12 @@
 import { connect, set } from 'mongoose';
-import { NODE_ENV, DB_HOST, DB_PORT, DB_DATABASE } from '@config';
+import { NODE_ENV } from '@config';
 
 export const dbConnection = async () => {
   const dbConfig = {
-    url: `mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`,
+    url: 'mongodb+srv://ceres:JAJAJA69@ceres.ijmqafi.mongodb.net/krisas',
     options: {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     },
   };
 
@@ -14,5 +14,5 @@ export const dbConnection = async () => {
     set('debug', true);
   }
 
-  await connect(dbConfig.url, dbConfig.options);
-}
+  await connect(dbConfig.url);
+};
