@@ -7,6 +7,10 @@ class KrisaMongooseRepository implements KrisaRepository {
     const krisas = await Krisa.find({}).lean().sort({ krisaNumber: 'asc' });
     return krisas as KrisaFromDb[];
   };
+  getKrisaById = async (id: string): Promise<KrisaFromDb> => {
+    const krisa = await Krisa.findOne({ krisaNumber: id }).lean();
+    return krisa as KrisaFromDb;
+  };
 }
 
 export default KrisaMongooseRepository;
