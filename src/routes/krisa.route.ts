@@ -15,5 +15,6 @@ export class KrisaRoute implements Routes {
 
   private initializeRoutes() {
     this.router.get(`${this.path}/`, this.krisa.getKrisa);
+    this.router.get(`${this.path}/:id`, this.krisa.getKrisaById);
   }
 }
