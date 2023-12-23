@@ -12,4 +12,14 @@ export class KrisaController {
       next(error);
     }
   };
+  public getKrisaById = async (req: Request, res: Response, next: NextFunction) => {
+    const { params } = req;
+    try {
+      const krisa = await this.repository.getKrisaById(params.id);
+
+      res.status(200).json({ krisa });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
