@@ -1,23 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
-import { KrisaRepository } from './types';
+import TarotMongooseRepository from '@/repository/TarotMongooseRepository';
 
 export class TarotController {
-  constructor(public repository: KrisaRepository) {}
-  public getKrisa = async (_req: Request, res: Response, next: NextFunction) => {
+  constructor(public repository: TarotMongooseRepository) {}
+  public getTarot = async (_req: Request, res: Response, next: NextFunction) => {
     try {
-      const krisas = await this.repository.getKrisas();
+      const tarot = await this.repository.getTarot();
 
-      res.status(200).json({ krisas: krisas });
-    } catch (error) {
-      next(error);
-    }
-  };
-  public getKrisaById = async (req: Request, res: Response, next: NextFunction) => {
-    const { params } = req;
-    try {
-      const krisa = await this.repository.getKrisaById(params.id);
-
-      res.status(200).json({ krisa });
+      res.status(200).json({ tarot: tarot });
     } catch (error) {
       next(error);
     }
